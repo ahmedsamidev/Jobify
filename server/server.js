@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "development") app.use(moragan("dev"));
 
 const __filename = fileURLToPath(import.meta.url); // get the current module URL and convert it into a file path.
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -45,7 +45,7 @@ app.use("/api/v1/test", (req, res, next) => {
 });
 
 app.use("*", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 // Not Found Handler
 app.use("*", (req, res, next) => {
