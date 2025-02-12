@@ -8,6 +8,8 @@ import { fileURLToPath } from "url";
 import path from "path";
 import mongoose from "mongoose";
 import cloudinary from "cloudinary";
+import helmet from "helmet";
+import ExpressMongoSanitize from "express-mongo-sanitize";
 // custome imports
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
@@ -24,6 +26,8 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(cookieParser());
 app.use(express.json());
+app.use(helmet());
+app.use(ExpressMongoSanitize());
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
