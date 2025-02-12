@@ -3,7 +3,7 @@ import Job from "../models/JobModal.js";
 import { StatusCodes } from "http-status-codes";
 import { NotFoundError } from "../errors/customeError.js";
 import cloudinary from "cloudinary";
-import { promises as fs } from "fs";
+import { formateImage } from "../middleware/multerMiddleware.js";
 
 export const getCurrentUser = async (req, res, next) => {
   const user = await User.findById(req.user.id);
@@ -35,8 +35,8 @@ export const updateUser = async (req, res, next) => {
   const { name, email, lastName, location } = req.body;
 
   if (file) {
-    const response = await cloudinary.v2.uploader.upload(file.path);
-    await fs.unlink(file.path);
+    const newFile = formateImage(file);
+    const response = await cloudinary.v2.uploader.upload(newFile);
     req.user.avatar = response.secure_url;
     req.user.avatarPublicId = response.public_id;
   }
