@@ -4,13 +4,13 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // server: {
-  //   proxy: {
-  //     "/api": {
-  //       target: `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api`,
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, ""),
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      "/api": {
+        target: `https://jobify-rouge-three.vercel.app/api`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });
