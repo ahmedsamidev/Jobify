@@ -11,3 +11,4 @@ export { default as BarChar } from "./BarChart";
 export { default as FromRow } from "./FormRow";
 export { default as FormRowSelect } from "./FormRowSelect";
 export { default as SubmitBtn } from "./SubmitBtn";
+export { default as Loading } from "./Loading";
